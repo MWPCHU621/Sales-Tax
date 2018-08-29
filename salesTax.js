@@ -36,14 +36,15 @@ function calculateSalesTax(salesData, taxRates) {
   }
 
 
-
   for(company in SalesTaxByCompany)
   {
     SalesTaxByCompany[company].totalSales = calculateSalesByCompany(salesData, company);
+    //SalesTaxByCompany[company].totalTaxes = calculateTaxByCompany(salesData, company);
   }
 
 
   console.log(SalesTaxByCompany);
+  return SalesTaxByCompany;
 }
 
 //calculate total sales region
@@ -78,6 +79,18 @@ function calculateSalesByCompany(salesData, name)
   return total;
 
 }
+function calculateTaxByRegion(salesData, salesTaxRates, region)
+{
+  let total;
+  for(let i = 0; i< salesData.length; i++)
+  {
+    let sales = calculateSalesByRegion(salesData, region);
+    total = sales * salesTaxRates[region];
+  }
+  console.log(total);
+  return total;
+}
+
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
 
