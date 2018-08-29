@@ -25,7 +25,7 @@ var companySalesData = [
 //calculate total sales of all the unique companies in companySalesData as well as total tax for the companies.
 function calculateSalesTax(salesData, taxRates) {
   //console.log(calculateSalesByRegion(companySalesData, "SK"));
-
+  console.log(calculateSalesByCompany(companySalesData, "Telus"));
 
 }
 
@@ -33,14 +33,13 @@ function calculateSalesTax(salesData, taxRates) {
 function calculateSalesByRegion(salesData, region)
 {
   let total = 0;
-  for(let i = 0; i < companySalesData.length; i++)
+  for(let i = 0; i < salesData.length; i++)
   {
-    if(companySalesData[i].province === region)
+    if(salesData[i].province === region)
     {
-      console.log(companySalesData[i].sales);
-      for(let j = 0; j < companySalesData[i].sales[j]; j++)
+      for(let j = 0; j < salesData[i].sales[j]; j++)
       {
-        total += companySalesData[i].sales[j];
+        total += salesData[i].sales[j];
       }
     }
   }
@@ -51,6 +50,15 @@ function calculateSalesByRegion(salesData, region)
 function calculateSalesByCompany(salesData, name)
 {
   let total = 0;
+  for(let i = 0; i < salesData.length; i++)
+  {
+    if(salesData[i].name === name)
+    {
+      total += calculateSalesByRegion(salesData, salesData[i].province);
+    }
+  }
+
+  return total;
 
 }
 
