@@ -22,9 +22,36 @@ var companySalesData = [
   }
 ];
 
-
+//calculate total sales of all the unique companies in companySalesData as well as total tax for the companies.
 function calculateSalesTax(salesData, taxRates) {
-  // Implement your code here
+  //console.log(calculateSalesByRegion(companySalesData, "SK"));
+
+
+}
+
+//calculate total sales region
+function calculateSalesByRegion(salesData, region)
+{
+  let total = 0;
+  for(let i = 0; i < companySalesData.length; i++)
+  {
+    if(companySalesData[i].province === region)
+    {
+      console.log(companySalesData[i].sales);
+      for(let j = 0; j < companySalesData[i].sales[j]; j++)
+      {
+        total += companySalesData[i].sales[j];
+      }
+    }
+  }
+  return total;
+}
+
+//calculates total sales by unique companies
+function calculateSalesByCompany(salesData, name)
+{
+  let total = 0;
+
 }
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
